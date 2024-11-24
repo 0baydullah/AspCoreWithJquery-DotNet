@@ -21,6 +21,7 @@
             <br />
             <button class="btn btn-info" onclick="Sum()">Sum</button>
             <button class="btn btn-info" onclick="Sub()">Sub</button>
+            <button class="btn btn-info" onclick="Calc()">Calc</button>
             <br />
             <h3 id="result"></h3>
         </div>
@@ -69,6 +70,30 @@
             dataType: 'text',
             success: function (response, status, xhr) {
                 $("#result").text(response);
+            },
+            error: function (req, status, error) {
+                $("#result").text(error);
+            }
+
+        });
+
+        // var data = name  + surname;
+
+        // $("#result").text(data);
+    }
+
+    function Calc() {
+        var n1 = parseInt($("#num1").val());
+        var n2 = parseInt($("#num2").val());
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Calculate")',
+            data: { num1: n1, num2: n2 },
+            dataType: 'json',
+            success: function (response, status, xhr) {
+                var data = "sum is : " + response.add + "\nSub is : " + response.sub + "\nMul is : " + response.mul + "\nDiv is : " + response.div;
+                $("#result").text(data);
             },
             error: function (req, status, error) {
                 $("#result").text(error);
