@@ -18,6 +18,19 @@ namespace AspCoreWithJquery.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public int Add(int num1 , int num2)
+        {
+            return num1+num2;
+        }
+
+        [HttpPost]
+        public int Sub(int num1 , int num2)
+        {
+            return num1-num2;
+        }
+
         public IActionResult Privacy()
         {
             return View();
